@@ -1,0 +1,1 @@
+show slave status 结果里的 seconds_behind_master 参数的值，可以用来衡量主备延迟时间的长短
