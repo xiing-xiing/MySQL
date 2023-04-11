@@ -1,0 +1,44 @@
+1、检查系统中是否安装mysql，返回空表示没有安装
+rpm -qa | grep mysql
+
+2、在新版本的CentOS7中，默认的数据库已更新为了Mariadb，而非 MySQL，所以执行 yum install mysql 命令只是更新Mariadb数据库，并不会安装 MySQL 
+
+3、查看已安装的 Mariadb 数据库版本。
+rpm -qa|grep -i mariadb
+
+4、卸载已安装的 Mariadb 数据库
+rpm -qa|grep mariadb|xargs rpm -e --nodeps
+
+5、下载mysql的yum源配置
+wget http://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+
+6、安装yum源
+yum -y install mysql57-community-release-el7-11.noarch.rpm
+
+7、yum方式安装mysql
+yum -y install mysql-server  --nogpgcheck
+
+8、启动
+#启动 mysql
+systemctl start mysqld.service 
+#重启 mysql
+systemctl restart mysqld.service 
+ #停止 mysql
+systemctl stop mysqld.service
+#设置 mysql 开机启动
+systemctl enable mysqld.service 
+
+8、获取密码
+为了加强安全性,MySQL5.7为root用户随机生成了一个密码,在error log中,关于error log的位置,如果安装的是RPM包,则默认是 /var/log/mysqld.log一般可通过 log_error 设置 可通过 # grep "password" /var/log/mysqld.log 命令获取MySQL的临时密码
+
+9、修改密码
+update user set password=PASSWORD("这里输入root用户密码") where User='root';
+flush privileges;
+
+10、设置远程
+# 设置远程主机登录
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'your username'@'%' IDENTIFIED BY 'your password';
+
+# 执行以下命令，为root 用户添加远程登录的能力。
+mysql> GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "123456";
+
