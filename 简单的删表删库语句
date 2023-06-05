@@ -1,0 +1,5 @@
+DELETE FROM {数据表} where {主键} in ({a条件}, {b条件},.............);
+
+drop table {表名};
+
+drop database {库名};
