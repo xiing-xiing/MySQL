@@ -1,0 +1,9 @@
+CREATE TABLE cert (
+  id INT  UNIQUE AUTO_INCREMENT,
+  domain VARCHAR(255)  NULL,
+  fingerprint VARCHAR(255) NULL,
+  issuer VARCHAR(255) NULL,
+  expiration_date DATE NULL,
+  remaining_days INT NULL,
+  PRIMARY KEY (id)
+);
