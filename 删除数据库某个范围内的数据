@@ -1,0 +1,8 @@
+CREATE TEMPORARY TABLE {临时表} 
+SELECT id FROM {数据表}
+WHERE {条件};
+
+DELETE FROM {数据表} 
+WHERE id IN (SELECT id FROM {临时表});
+
+DROP TEMPORARY TABLE {临时表};
